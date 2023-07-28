@@ -2610,7 +2610,7 @@
                             },
                             ".background": {
                                 "fill": "#000000",
-                                "stroke": "#5C6773"
+                                "stroke": "#E6984E"
                             },
                             ".color-band": {
                                 "fill": "#3C444D"
@@ -2654,7 +2654,7 @@
                                 "display": "none"
                             },
                             "g.error": {
-                                "opacity": 0
+                                "opacity": 1
                             },
                             "g.error image": {
                                 "xlink:href": "/inc/coa/img/block_icon_warn.svg"
@@ -2776,7 +2776,7 @@
                             "width": 180
                         },
                         "state": "action_assets",
-                        "status": "",
+                        "status": "warn",
                         "title": "Investigate",
                         "type": "coa.Action",
                         "warn": false,
@@ -2975,7 +2975,7 @@
                             },
                             ".background": {
                                 "fill": "#000000",
-                                "stroke": "#5C6773"
+                                "stroke": "#E6984E"
                             },
                             ".color-band": {
                                 "fill": "#3C444D"
@@ -3019,7 +3019,7 @@
                                 "display": "none"
                             },
                             "g.error": {
-                                "opacity": 0
+                                "opacity": 1
                             },
                             "g.error image": {
                                 "xlink:href": "/inc/coa/img/block_icon_warn.svg"
@@ -3141,7 +3141,7 @@
                             "width": 180
                         },
                         "state": "action_assets",
-                        "status": "",
+                        "status": "warn",
                         "title": "Investigate",
                         "type": "coa.Action",
                         "warn": false,
@@ -4299,7 +4299,7 @@
                         "attrs": {
                             ".background": {
                                 "fill": "#000000",
-                                "stroke": "#5C6773"
+                                "stroke": "#E6984E"
                             },
                             ".color-band": {
                                 "fill": "#3C444D"
@@ -4349,7 +4349,7 @@
                                 "display": "none"
                             },
                             "g.error": {
-                                "opacity": 0
+                                "opacity": 1
                             },
                             "g.error image": {
                                 "xlink:href": "/inc/coa/img/block_icon_warn.svg"
@@ -4429,7 +4429,7 @@
                         "delay": 0,
                         "description": "",
                         "draftMode": true,
-                        "existingCF": true,
+                        "existingCF": false,
                         "functionBlock": "custom function",
                         "has_custom": false,
                         "has_custom_block": false,
@@ -4665,7 +4665,7 @@
                             "width": 180
                         },
                         "state": "repo",
-                        "status": "",
+                        "status": "warn",
                         "title": "custom function",
                         "type": "coa.CustomFunctionBlock",
                         "userGeneratedCode": "    # Write your custom code here...\n",
@@ -4681,9 +4681,9 @@
         "playbook_type": "automation",
         "python_version": "3",
         "schema": "4",
-        "version": "6.1.0.131"
+        "version": "6.0.1.123902"
     },
-    "create_time": "2023-07-28T08:09:07.419244+00:00",
+    "create_time": "2023-07-28T09:50:58.491817+00:00",
     "draft_mode": false,
     "labels": [
         "*"
