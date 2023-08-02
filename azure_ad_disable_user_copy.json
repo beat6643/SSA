@@ -1,0 +1,327 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_4_to_port_5",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_5_to_port_1",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "hash": "a7cea28717d0d21e4d0921bb486fc8acc3e1f921",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "x": 1000,
+                    "y": 419.99999999999966
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
+                    "x": 1000,
+                    "y": 1040
+                },
+                "2": {
+                    "data": {
+                        "action": "disable user",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Azure AD Graph Demo",
+                        "connectorConfigs": [
+                            "azure_ad"
+                        ],
+                        "connectorId": 206,
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "disable_user_1",
+                        "id": "2",
+                        "parameters": {
+                            "user_id": "playbook_input:user"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "",
+                                "default": "",
+                                "field": "user_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "action",
+                    "x": 980,
+                    "y": 544.5
+                },
+                "3": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "mark_evidence",
+                            "repoName": "community"
+                        },
+                        "functionId": 1,
+                        "functionName": "mark_evidence_1",
+                        "id": "3",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "mark_evidence": {
+                                "description": "Mark an object as Evidence in a container",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            "phantom container id"
+                                        ],
+                                        "description": "Container ID or Container Object",
+                                        "inputType": "item",
+                                        "label": "container",
+                                        "name": "container",
+                                        "placeholder": "container:id",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "The object to mark as evidence. This could be a vault_id, artifact_id, note_id, container_id, or action_run_id. If the previous playbook block is an action then \"keyword_argument:results\" can be used for the action_run_id with the content_type \"action_run_id\". Vault_id can be an ID or a vault hash.",
+                                        "inputType": "item",
+                                        "label": "input_object",
+                                        "name": "input_object",
+                                        "placeholder": "artifact id, note id, vault_id, etc.",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "The content type of the object to add as evidence which must be one of the following:\n            \n            vault_id\n            artifact_id\n            container_id\n            note_id\n            action_run_id",
+                                        "inputType": "item",
+                                        "label": "content_type",
+                                        "name": "content_type",
+                                        "placeholder": "See help text for supported types",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "mark_evidence",
+                                "name": "mark_evidence"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "mark_evidence": {
+                                "container": "container:id",
+                                "content_type": "action_run_id",
+                                "input_object": null
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "utility",
+                    "userCode": "\n    parameters = []\n\n    parameters.append({\n        \"container\": id_value,\n        \"input_object\": results,\n        \"content_type\": \"action_run_id\",\n    })\n\n\n",
+                    "x": 980,
+                    "y": 664.5
+                },
+                "4": {
+                    "data": {
+                        "action": "disable tokens",
+                        "actionType": "contain",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Azure AD Graph Demo",
+                        "connectorConfigs": [
+                            "azure_ad"
+                        ],
+                        "connectorId": 206,
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "disable_tokens_1",
+                        "id": "4",
+                        "parameters": {
+                            "user_id": "playbook_input:user"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "",
+                                "default": "",
+                                "field": "user_id"
+                            }
+                        ],
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "action",
+                    "x": 980,
+                    "y": 784.5
+                },
+                "5": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "mark_evidence",
+                            "repoName": "community"
+                        },
+                        "functionId": 2,
+                        "functionName": "mark_evidence_2",
+                        "id": "5",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "mark_evidence": {
+                                "description": "Mark an object as Evidence in a container",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            "phantom container id"
+                                        ],
+                                        "description": "Container ID or Container Object",
+                                        "inputType": "item",
+                                        "label": "container",
+                                        "name": "container",
+                                        "placeholder": "container:id",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "The object to mark as evidence. This could be a vault_id, artifact_id, note_id, container_id, or action_run_id. If the previous playbook block is an action then \"keyword_argument:results\" can be used for the action_run_id with the content_type \"action_run_id\". Vault_id can be an ID or a vault hash.",
+                                        "inputType": "item",
+                                        "label": "input_object",
+                                        "name": "input_object",
+                                        "placeholder": "artifact id, note id, vault_id, etc.",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "The content type of the object to add as evidence which must be one of the following:\n            \n            vault_id\n            artifact_id\n            container_id\n            note_id\n            action_run_id",
+                                        "inputType": "item",
+                                        "label": "content_type",
+                                        "name": "content_type",
+                                        "placeholder": "See help text for supported types",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "mark_evidence",
+                                "name": "mark_evidence"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "mark_evidence": {
+                                "container": "container:id",
+                                "content_type": "action_run_id",
+                                "input_object": null
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "utility",
+                    "userCode": "\n    parameters = []\n\n    parameters.append({\n        \"container\": id_value,\n        \"input_object\": results,\n        \"content_type\": \"action_run_id\",\n    })\n    \n",
+                    "x": 980,
+                    "y": 904.5
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": [
+            {
+                "contains": [
+                    "user name"
+                ],
+                "description": "",
+                "name": "user"
+            }
+        ],
+        "output_spec": null,
+        "playbook_type": "data",
+        "python_version": "3",
+        "schema": "5.0.8",
+        "version": "5.3.4.95226"
+    },
+    "create_time": "2023-08-02T06:12:02.254312+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": [
+        "identity",
+        "protect",
+        "risk_notable"
+    ]
+}
