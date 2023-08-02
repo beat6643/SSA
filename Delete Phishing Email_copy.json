@@ -1,0 +1,284 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Demo",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_2_to_port_3",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_3_to_port_4",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_4_to_port_5",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "id": "port_5_to_port_6",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "id": "port_6_to_port_1",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "hash": "07e6ffc3687733bdbe4853b72df104abe41aac72",
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "x": 19.999999999999986,
+                    "y": -1.9184653865522705e-13
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionId": 1,
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "userCode": "\n    # This function is called after all actions are completed.\n    # summary of all the action and/or all details of actions\n    # can be collected here.\n\n    # summary_json = phantom.get_summary()\n    # if 'result' in summary_json:\n        # for action_result in summary_json['result']:\n            # if 'action_run_id' in action_result:\n                # action_results = phantom.get_action_results(action_run_id=action_result['action_run_id'], result_data=False, flatten=False)\n                # phantom.debug(action_results)\n\n",
+                    "x": 19.999999999999986,
+                    "y": 952
+                },
+                "2": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "Phish Email Artifact",
+                                        "value": "artifact:*.name"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "filter phish artifact",
+                                "logic": "and"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "filter_1",
+                        "id": "2",
+                        "type": "filter"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "filter",
+                    "x": 60,
+                    "y": 148
+                },
+                "3": {
+                    "data": {
+                        "action": "trace email",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "EWS for Office 365",
+                        "connectorConfigs": [
+                            "office365"
+                        ],
+                        "connectorId": "a73f6d32-c9d5-4fec-b024-43876700daa6",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "trace_email_1",
+                        "id": "3",
+                        "parameters": {
+                            "sender_address": "filtered-data:filter_1:condition_1:artifact:*.cef.cleanSenderEmail"
+                        },
+                        "requiredParameters": [],
+                        "tab": "byAction",
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "action",
+                    "x": 0,
+                    "y": 320
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "filtered-data:filter_1:condition_1:artifact:*.cef.emailHeaders.decodedSubject",
+                                        "value": "trace_email_1:action_result.data.*.trace_data.Subject"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "filter subject",
+                                "logic": "and"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "filter_2",
+                        "id": "4",
+                        "type": "filter"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "filter",
+                    "x": 60,
+                    "y": 476
+                },
+                "5": {
+                    "data": {
+                        "action": "run query",
+                        "actionType": "investigate",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "EWS for Office 365",
+                        "connectorConfigs": [
+                            "office365"
+                        ],
+                        "connectorId": "a73f6d32-c9d5-4fec-b024-43876700daa6",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "run_query_1",
+                        "id": "5",
+                        "parameters": {
+                            "email": "filtered-data:filter_2:condition_1:trace_email_1:action_result.data.*.trace_data.RecipientAddress",
+                            "folder": "Inbox",
+                            "internet_message_id": "filtered-data:filter_2:condition_1:trace_email_1:action_result.data.*.trace_data.MessageId",
+                            "range": "0-10"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "email"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "0-10",
+                                "field": "range"
+                            },
+                            {
+                                "data_type": "string",
+                                "default": "Inbox",
+                                "field": "folder"
+                            }
+                        ],
+                        "tab": "byAction",
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "action",
+                    "x": 0,
+                    "y": 640
+                },
+                "6": {
+                    "data": {
+                        "action": "delete email",
+                        "actionType": "contain",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "EWS for Office 365",
+                        "connectorConfigs": [
+                            "office365"
+                        ],
+                        "connectorId": "a73f6d32-c9d5-4fec-b024-43876700daa6",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "delete_email_1",
+                        "id": "6",
+                        "parameters": {
+                            "id": "run_query_1:action_result.data.*.t_ItemId.@Id"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "id"
+                            }
+                        ],
+                        "tab": "byAction",
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "action",
+                    "x": 0,
+                    "y": 800
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": null,
+        "output_spec": null,
+        "playbook_type": "automation",
+        "python_version": "3",
+        "schema": "5.0.8",
+        "version": "5.3.4.95226"
+    },
+    "create_time": "2023-08-02T06:13:36.672094+00:00",
+    "draft_mode": false,
+    "labels": [
+        "email"
+    ],
+    "tags": []
+}
