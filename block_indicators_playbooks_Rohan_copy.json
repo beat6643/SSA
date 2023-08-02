@@ -1,0 +1,467 @@
+{
+    "blockly": false,
+    "blockly_xml": "<xml></xml>",
+    "category": "Uncategorized",
+    "coa": {
+        "data": {
+            "description": "",
+            "edges": [
+                {
+                    "id": "port_0_to_port_2",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "2",
+                    "targetPort": "2_in"
+                },
+                {
+                    "id": "port_0_to_port_3",
+                    "sourceNode": "0",
+                    "sourcePort": "0_out",
+                    "targetNode": "3",
+                    "targetPort": "3_in"
+                },
+                {
+                    "id": "port_2_to_port_4",
+                    "sourceNode": "2",
+                    "sourcePort": "2_out",
+                    "targetNode": "4",
+                    "targetPort": "4_in"
+                },
+                {
+                    "id": "port_3_to_port_5",
+                    "sourceNode": "3",
+                    "sourcePort": "3_out",
+                    "targetNode": "5",
+                    "targetPort": "5_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_4_to_port_6",
+                    "sourceNode": "4",
+                    "sourcePort": "4_out",
+                    "targetNode": "6",
+                    "targetPort": "6_in"
+                },
+                {
+                    "conditions": [
+                        {
+                            "index": 0
+                        }
+                    ],
+                    "id": "port_5_to_port_7",
+                    "sourceNode": "5",
+                    "sourcePort": "5_out",
+                    "targetNode": "7",
+                    "targetPort": "7_in"
+                },
+                {
+                    "id": "port_6_to_port_1",
+                    "sourceNode": "6",
+                    "sourcePort": "6_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                },
+                {
+                    "id": "port_7_to_port_1",
+                    "sourceNode": "7",
+                    "sourcePort": "7_out",
+                    "targetNode": "1",
+                    "targetPort": "1_in"
+                }
+            ],
+            "nodes": {
+                "0": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_start",
+                        "id": "0",
+                        "type": "start"
+                    },
+                    "errors": {},
+                    "id": "0",
+                    "type": "start",
+                    "warnings": {},
+                    "x": 190,
+                    "y": 0
+                },
+                "1": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "functionName": "on_finish",
+                        "id": "1",
+                        "type": "end"
+                    },
+                    "errors": {},
+                    "id": "1",
+                    "type": "end",
+                    "warnings": {},
+                    "x": 200,
+                    "y": 620
+                },
+                "2": {
+                    "data": {
+                        "action": "block hash",
+                        "actionType": "contain",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Carbon Black Response",
+                        "connectorConfigs": [
+                            "carbon black"
+                        ],
+                        "connectorId": "56e81e6b-8022-4613-82ba-a779debac564",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "block_hash_1",
+                        "id": "2",
+                        "parameters": {
+                            "comment": "this is a bad hash",
+                            "hash": "playbook_input:hash"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "hash"
+                            }
+                        ],
+                        "tab": "byAction",
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "2",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 148
+                },
+                "3": {
+                    "data": {
+                        "action": "block ip",
+                        "actionType": "generic",
+                        "advanced": {
+                            "join": []
+                        },
+                        "connector": "Zscaler",
+                        "connectorConfigs": [
+                            "zscaler"
+                        ],
+                        "connectorId": "ee475421-d2e4-4d8e-addb-a2ce1465d6a3",
+                        "connectorVersion": "v1",
+                        "functionId": 1,
+                        "functionName": "block_ip_1",
+                        "id": "3",
+                        "parameters": {
+                            "ip": "playbook_input:ip"
+                        },
+                        "requiredParameters": [
+                            {
+                                "data_type": "string",
+                                "field": "ip"
+                            }
+                        ],
+                        "tab": "byAction",
+                        "type": "action"
+                    },
+                    "errors": {},
+                    "id": "3",
+                    "type": "action",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 148
+                },
+                "4": {
+                    "data": {
+                        "advanced": {
+                            "customName": "block hash success",
+                            "customNameId": 0,
+                            "description": "block hash success",
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "block_hash_1:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "block was successful",
+                                "logic": "and"
+                            }
+                        ],
+                        "functionId": 1,
+                        "functionName": "block_hash_success",
+                        "id": "4",
+                        "type": "filter"
+                    },
+                    "errors": {},
+                    "id": "4",
+                    "type": "filter",
+                    "warnings": {},
+                    "x": 60,
+                    "y": 296
+                },
+                "5": {
+                    "data": {
+                        "advanced": {
+                            "customName": "block ip success",
+                            "customNameId": 0,
+                            "description": "block ip success",
+                            "join": []
+                        },
+                        "conditions": [
+                            {
+                                "comparisons": [
+                                    {
+                                        "conditionIndex": 0,
+                                        "op": "==",
+                                        "param": "block_ip_1:action_result.status",
+                                        "value": "success"
+                                    }
+                                ],
+                                "conditionIndex": 0,
+                                "customName": "block was successful",
+                                "logic": "and"
+                            }
+                        ],
+                        "functionId": 2,
+                        "functionName": "block_ip_success",
+                        "id": "5",
+                        "type": "filter"
+                    },
+                    "errors": {},
+                    "id": "5",
+                    "type": "filter",
+                    "warnings": {},
+                    "x": 400,
+                    "y": 296
+                },
+                "6": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "indicator_tag",
+                            "repoName": "community"
+                        },
+                        "functionId": 1,
+                        "functionName": "indicator_tag_1",
+                        "id": "6",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "indicator_tag": {
+                                "description": "Tag an existing indicator record. Tags can be overwritten or appended.",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "Specifies the indicator which the tag will be added to. Supports a string indicator value or an indicator id.",
+                                        "inputType": "item",
+                                        "label": "indicator",
+                                        "name": "indicator",
+                                        "placeholder": "my_indicator",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "Comma separated list of tags. Tags should only contain characters Aa-Zz, 0-9, '-', and '_'.",
+                                        "inputType": "item",
+                                        "label": "tags",
+                                        "name": "tags",
+                                        "placeholder": "tag1,tag2,...,tagk",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [],
+                                        "description": "Either True or False with default as False. If set to True, existing tags on the indicator record will be replaced by the provided input. If set to False, the new tags will be appended to the existing indicator tags.",
+                                        "inputType": "item",
+                                        "label": "overwrite",
+                                        "name": "overwrite",
+                                        "placeholder": "False",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "indicator_tag",
+                                "name": "indicator_tag"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "indicator_tag": {
+                                "indicator": "filtered-data:block_hash_success:condition_1:block_hash_1:action_result.parameter.hash",
+                                "overwrite": null,
+                                "tags": "blocked"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "6",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 0,
+                    "y": 476
+                },
+                "7": {
+                    "data": {
+                        "advanced": {
+                            "join": []
+                        },
+                        "customFunction": {
+                            "draftMode": false,
+                            "name": "indicator_tag",
+                            "repoName": "community"
+                        },
+                        "functionId": 2,
+                        "functionName": "indicator_tag_2",
+                        "id": "7",
+                        "selectMore": false,
+                        "type": "utility",
+                        "utilities": {
+                            "indicator_tag": {
+                                "description": "Tag an existing indicator record. Tags can be overwritten or appended.",
+                                "fields": [
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "Specifies the indicator which the tag will be added to. Supports a string indicator value or an indicator id.",
+                                        "inputType": "item",
+                                        "label": "indicator",
+                                        "name": "indicator",
+                                        "placeholder": "my_indicator",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [
+                                            "*"
+                                        ],
+                                        "description": "Comma separated list of tags. Tags should only contain characters Aa-Zz, 0-9, '-', and '_'.",
+                                        "inputType": "item",
+                                        "label": "tags",
+                                        "name": "tags",
+                                        "placeholder": "tag1,tag2,...,tagk",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    },
+                                    {
+                                        "dataTypes": [],
+                                        "description": "Either True or False with default as False. If set to True, existing tags on the indicator record will be replaced by the provided input. If set to False, the new tags will be appended to the existing indicator tags.",
+                                        "inputType": "item",
+                                        "label": "overwrite",
+                                        "name": "overwrite",
+                                        "placeholder": "False",
+                                        "renderType": "datapath",
+                                        "required": false
+                                    }
+                                ],
+                                "label": "indicator_tag",
+                                "name": "indicator_tag"
+                            }
+                        },
+                        "utilityType": "custom_function",
+                        "values": {
+                            "indicator_tag": {
+                                "indicator": "filtered-data:block_ip_success:condition_1:block_ip_1:action_result.parameter.ip",
+                                "overwrite": null,
+                                "tags": "blocked"
+                            }
+                        }
+                    },
+                    "errors": {},
+                    "id": "7",
+                    "type": "utility",
+                    "warnings": {},
+                    "x": 340,
+                    "y": 476
+                }
+            },
+            "notes": ""
+        },
+        "input_spec": [
+            {
+                "contains": [
+                    "hash",
+                    "sha1",
+                    "md5",
+                    "sha256",
+                    "sha512"
+                ],
+                "description": "",
+                "name": "hash"
+            },
+            {
+                "contains": [
+                    "ip"
+                ],
+                "description": "",
+                "name": "ip"
+            }
+        ],
+        "output_spec": [
+            {
+                "contains": [],
+                "datapaths": [
+                    "block_ip_1:action_result.status"
+                ],
+                "deduplicate": false,
+                "description": "",
+                "metadata": {},
+                "name": "note_content"
+            },
+            {
+                "contains": [],
+                "datapaths": [
+                    "Block Indicators Report"
+                ],
+                "deduplicate": false,
+                "description": "",
+                "metadata": {},
+                "name": "note_title"
+            },
+            {
+                "contains": [],
+                "datapaths": [
+                    "block_hash_1:action_result.status"
+                ],
+                "deduplicate": false,
+                "description": "",
+                "metadata": {},
+                "name": "note_content_2"
+            }
+        ],
+        "playbook_type": "data",
+        "python_version": "3",
+        "schema": "5.0.10",
+        "version": "6.0.1.123902"
+    },
+    "create_time": "2023-08-02T06:12:30.421296+00:00",
+    "draft_mode": false,
+    "labels": [
+        "*"
+    ],
+    "tags": [
+        "block",
+        "risk_notable"
+    ]
+}
